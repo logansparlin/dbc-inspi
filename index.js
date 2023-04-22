@@ -187,7 +187,7 @@
     refresh.addEventListener('click', randomize);
     download.addEventListener('click', () => {
       const link = document.createElement('a');
-      link.download = 'filename.png';
+      link.download = 'dbc-meme.png';
       link.href = canvas.toDataURL()
       link.click();
     })
