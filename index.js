@@ -1,5 +1,4 @@
 (function () {
-  console.log("LOADED FILE")
   const ratio = window.devicePixelRatio;
   const container = document.querySelector('.generator-container');
   const canvas = document.querySelector('#inspo-generator')
@@ -212,7 +211,7 @@
   }
 
   const drawText = () => {
-    context.font = `${fontSize}px Helvetica`;
+    context.font = `italic ${fontSize}px Helvetica`;
     context.fillStyle = `rgba(255, 230, 0, 1)`;
     context.letterSpacing = "-0.02em";
 
