@@ -186,9 +186,10 @@
     window.addEventListener('resize', handleResize);
     refresh.addEventListener('click', randomize);
     download.addEventListener('click', () => {
-      console.log('downloading')
-      download.href = canvas.toDataURL('image/png');
-      download.download = 'dbc-meme.png';
+      const link = document.createElement('a');
+      link.download = 'filename.png';
+      link.href = canvas.toDataURL()
+      link.click();
     })
   }
 
