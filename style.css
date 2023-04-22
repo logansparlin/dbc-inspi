@@ -1,0 +1,104 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  padding: 20px;
+}
+
+.generator {
+  position: relative;
+  width: 85%;
+}
+
+.generator-container {
+  width: 100%;
+  aspect-ratio: 1.48;
+  border-radius: 51px;
+  overflow: hidden;
+  border: 1px solid black;
+  position: relative;
+}
+
+.controls {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 5;
+  display: flex;
+  justify-content: space-between;
+  grid-gap: 40px;
+}
+
+.controls button {
+  width: 140px;
+  height: 140px;
+  background: #222;
+  opacity: 0.7;
+  transition: opacity 350ms ease;
+  border: none;
+  outline: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+}
+
+.controls button svg {
+  width: 60px;
+  height: 60px;
+  transition: transform 350ms ease;
+}
+
+.controls button#refresh:hover svg {
+  transform: rotate(10deg);
+  transition: transform 350ms ease;
+}
+
+.controls button#download:hover svg {
+  transform: translateY(2px);
+  transition: transform 350ms ease;
+}
+
+.controls button:hover,
+.controls button:active {
+  background: #222;
+  opacity: 1;
+  transition: opacity 350ms ease;
+}
+
+@media only screen and (max-width: 768px) {
+
+  html,
+  body {
+    padding: 10px;
+  }
+
+  .generator {
+    width: 100%;
+  }
+
+  .controls {
+    position: relative;
+    width: 100%;
+    transform: none;
+    top: unset;
+    left: unset;
+    gap: 10px;
+    justify-content: center;
+    padding-top: 20px;
+  }
+
+  .controls button {
+    width: 42px;
+    height: 42px;
+    opacity: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .controls button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
