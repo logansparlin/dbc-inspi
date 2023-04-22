@@ -171,7 +171,6 @@
   }
 
   const randomize = () => {
-    console.log('randomize')
     frame = 0;
     const oldImgIndex = imgIndex;
     const oldPhraseIndex = phraseIndex;
@@ -188,8 +187,9 @@
     window.addEventListener('resize', handleResize);
     refresh.addEventListener('click', randomize);
     download.addEventListener('click', () => {
+      console.log('downloading')
       download.href = canvas.toDataURL('image/png');
-      download.download = 'meme.png';
+      download.download = 'dbc-meme.png';
     })
   }
 
