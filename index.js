@@ -11,8 +11,8 @@
   const img = new Image();
   const logo = new Image();
 
-  let frame = 0;
-  let maxFrames = 120;
+  img.crossOrigin = "Anonymous";
+  logo.crossOrigin = "Anonymous";
 
   let fontSize = 72;
   let imgIndex = 0;
