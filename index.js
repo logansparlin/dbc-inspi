@@ -171,7 +171,6 @@
   }
 
   const randomize = () => {
-    frame = 0;
     const oldImgIndex = imgIndex;
     const oldPhraseIndex = phraseIndex;
     while (imgIndex === oldImgIndex) {
@@ -201,9 +200,6 @@
   }
 
   const draw = () => {
-    if (frame < maxFrames) {
-      frame = frame + 1;
-    }
     img.src = images[imgIndex];
     img.onload = () => {
       drawImageProp(context, img, 0, 0, canvas.width, canvas.height, 0.5, 0.5)
