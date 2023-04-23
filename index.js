@@ -3,11 +3,13 @@
   const container = document.querySelector('.generator-container');
   const canvas = document.querySelector('#inspo-generator')
   const context = canvas.getContext('2d');
-  context.scale(ratio, ratio);
   const download = document.querySelector('#download');
   const refresh = document.querySelector('#refresh');
 
+  context.scale(ratio, ratio);
+
   const img = new Image();
+  const nextImg = new Image();
   const logo = new Image();
 
   img.crossOrigin = "Anonymous";
@@ -16,6 +18,7 @@
   let fontSize = 72;
   let imgIndex = 0;
   let phraseIndex = 0;
+  let nextImgIndex = 1;
 
   const logoUrl = "https://daks2k3a4ib2z.cloudfront.net/636685de8bef740025b93516/64441258f7fdec5ff085d3af_DBC_Logo.png";
   logo.src = logoUrl;
@@ -147,6 +150,9 @@
     "They don’t know I have 53 followers on my Are.na channel",
   ]
 
+  img.src = images[imgIndex];
+  nextImg.src = images[nextImgIndex];
+
   const setCanvasSize = () => {
     canvas.width = container.clientWidth * ratio;
     canvas.height = container.clientHeight * ratio;
@@ -171,11 +177,12 @@
   }
 
   const randomize = () => {
-    const oldImgIndex = imgIndex;
     const oldPhraseIndex = phraseIndex;
-    while (imgIndex === oldImgIndex) {
-      imgIndex = Math.floor(Math.random() * images.length);
-    }
+
+    imgIndex = nextImgIndex;
+    nextImgIndex = Math.floor(Math.random() * images.length);
+
+    nextImg.src = images[nextImgIndex];
 
     while (phraseIndex === oldPhraseIndex) {
       phraseIndex = Math.floor(Math.random() * phrases.length);
