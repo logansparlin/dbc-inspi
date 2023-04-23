@@ -28,6 +28,13 @@ body {
   display: flex;
   justify-content: space-between;
   grid-gap: 40px;
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.generator:hover .controls {
+  opacity: 1;
+  transition: opacity 300ms ease;
 }
 
 .controls button {
@@ -86,6 +93,7 @@ body {
     gap: 10px;
     justify-content: center;
     padding-top: 20px;
+    opacity: 1;
   }
 
   .controls button {

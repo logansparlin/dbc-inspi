@@ -157,6 +157,7 @@
   const handleResize = () => {
     setFontSize();
     setCanvasSize();
+    draw();
   }
 
   const setFontSize = () => {
@@ -179,6 +180,8 @@
     while (phraseIndex === oldPhraseIndex) {
       phraseIndex = Math.floor(Math.random() * phrases.length);
     }
+
+    draw();
   }
 
   const addEventListeners = () => {
@@ -186,7 +189,7 @@
     refresh.addEventListener('click', randomize);
     download.addEventListener('click', () => {
       const link = document.createElement('a');
-      link.download = 'dbc-meme.png';
+      link.download = 'dbc-inspiration.png';
       link.href = canvas.toDataURL()
       link.click();
     })
@@ -195,7 +198,7 @@
   const drawLogo = () => {
     const width = window.innerWidth < 1200 ? (logo.width * 0.2) * ratio : logo.width * ratio * 0.34;
     const height = window.innerWidth < 1200 ? (logo.height * 0.2) * ratio : logo.height * ratio * 0.34;
-    const offset = window.innerWidth < 1200 ? 0.86 : 0.875;
+    const offset = window.innerWidth < 1200 ? 0.87 : 0.89;
     drawImageProp(context, logo, canvas.width / 2 - width / 2, canvas.height * offset, width, height, 0.5, 0.5);
   }
 
@@ -206,8 +209,6 @@
       drawText();
       drawLogo();
     }
-
-    window.requestAnimationFrame(draw)
   }
 
   const drawText = () => {
@@ -319,7 +320,7 @@
     setFontSize();
     setCanvasSize();
     addEventListeners();
-    window.requestAnimationFrame(draw)
+    draw();
   }
 
   initialize();
