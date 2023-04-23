@@ -303,7 +303,6 @@
   let nextImgIndex = Math.floor(Math.random() * images.length);
 
   img.src = images[imgIndex];
-  console.log(images.length)
   nextImg.src = images[nextImgIndex];
 
   const setCanvasSize = () => {
@@ -344,14 +343,30 @@
     draw();
   }
 
+  const isTouchDevice = () => {
+    return (('ontouchstart' in window) ||
+      (navigator.maxTouchPoints > 0) ||
+      (navigator.msMaxTouchPoints > 0));
+  }
+
+  const openImageWindow = (url) => {
+    var win = window.open();
+    win.document.write(`<img src="${url}" alt="" style="width: 100%;height: auto;" />`);
+  }
+
   const addEventListeners = () => {
     window.addEventListener('resize', handleResize);
     refresh.addEventListener('click', randomize);
     download.addEventListener('click', () => {
-      const link = document.createElement('a');
-      link.download = 'dbc-inspiration.png';
-      link.href = canvas.toDataURL()
-      link.click();
+      const file = canvas.toDataURL();
+      if (isTouchDevice()) {
+        openImageWindow(file);
+      } else {
+        const link = document.createElement('a');
+        link.download = 'dbc-inspiration.png';
+        link.href = file;
+        link.click();
+      }
     })
   }
 
@@ -386,9 +401,19 @@
     const strokeWidth = window.innerWidth < 768 ? 1 : 2;
 
     if (textWidth > canvas.width * 0.75) {
+      let mobileFontSize;
       const text = phrases[phraseIndex].split(' ');
       const firstLine = text.slice(0, text.length / 2).join(' ');
       const secondLine = text.slice(text.length / 2, text.length).join(' ');
+      const firstLineWidth = context.measureText(firstLine).width;
+      const secondLineWidth = context.measureText(secondLine).width;
+      const maxWidth = Math.max(firstLineWidth, secondLineWidth);
+
+      if (maxWidth > canvas.width * 0.95) {
+        mobileFontSize = fontSize * (canvas.width * 0.95 / maxWidth);
+        context.font = `italic ${mobileFontSize}px Helvetica`;
+      }
+
       const firstLineX = ((canvas.width / 2) - (context.measureText(firstLine).width / 2));
       const secondLineX = ((canvas.width / 2) - (context.measureText(secondLine).width / 2));
 
@@ -398,7 +423,7 @@
       context.shadowBlur = 0;
       context.shadowOffsetX = shadowXOffset;
       context.shadowOffsetY = shadowYOffset;
-      context.fillText(firstLine, firstLineX, y - (fontSize * 1.05));
+      context.fillText(firstLine, firstLineX, y - (mobileFontSize ? mobileFontSize * 1.05 : fontSize * 1.05));
       context.fillText(secondLine, secondLineX, y);
       context.shadowColor = black;
       context.shadowBlur = 0;
@@ -407,7 +432,7 @@
       context.fillStyle = black;
       context.lineWidth = strokeWidth;
       context.strokeStyle = black;
-      context.strokeText(firstLine, firstLineX, y - (fontSize * 1.05));
+      context.strokeText(firstLine, firstLineX, y - (mobileFontSize ? mobileFontSize * 1.05 : fontSize * 1.05));
       context.strokeText(secondLine, secondLineX, y);
     } else {
       const x = ((canvas.width / 2) - (textWidth / 2));
