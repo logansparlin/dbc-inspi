@@ -252,7 +252,7 @@
     "All I have to give you is a love that never dies",
     "I’d rather be slowly consumed by the earth",
     "You are your own gravitational field",
-    "The don’t know I have 53 followers on my Are.na channel",
+    "They don’t know I have 53 followers on my Are.na channel",
     "Your breath is like a kind of alchemy",
     "The symptom of the universe is written in your eyes",
     "Making friends is easy if you let it be",
